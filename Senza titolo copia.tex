@@ -1,0 +1,351 @@
+%% LyX 2.1.4 created this file.  For more info, see http://www.lyx.org/.
+%% Do not edit unless you really know what you are doing.
+\documentclass[english]{article}
+\usepackage[T1]{fontenc}
+\usepackage[latin9]{inputenc}
+\usepackage{textcomp}
+\usepackage{babel}
+\begin{document}
+
+\part{Average Afflux Analysis}
+
+In this section we want to analyse the number of all the visits people
+made, during the simulation, distributed among all restaurants. In
+this sense, we know that a person each turn goes to a restaurant according
+to the rank-list stored in his knowledge database or chooses a random
+place. Hopefully, through the duration of the entire simulation each
+person will visit almost all restaurants. After a first transient
+where the agent discovers the world and progressively adjourn his
+knowledge database, on the effective quality of the restaurants where
+he ate, we deserve that after a definite number of turns people start
+becoming more incline in visiting the best restaurant they discovered
+by exploring the world. In this sens, indeed, people have ascertained
+the real quality of each diner by visiting it either since it was
+the restaurant they thought was the best or because they went there
+because at random. 
+
+We made up this simulation by considering 8 restaurants with different
+rankings uniformly distributed over the entire range, from zero to
+five. Therefore, we have restaurants which ranks are:
+
+\emph{METTERE FORMULA DELLA RELAZIONE LINEARE E POI TABELLA CON I
+VALORI DEI RANK PER COMPLETEZZA. TANTO E' UNA 2X8}
+\begin{itemize}
+\item Restaurant 1: 0.31
+\item Restaurant 2: 0.94
+\item Restaurant 3: 1.56
+\item Restaurant 4: 2.19
+\item Restaurant 5: 2.81
+\item Restaurant 6: 3.44
+\item Restaurant 7: 4.06
+\item Restaurant 8: 4.69
+\end{itemize}
+For what concernes the other parameters we have \textbf{???} people
+who chooses 50\% of time the best restaurant they can otherwise they
+goes randomly. Moreover, we considered 3 different cases where we
+changed the maximum capacity of each restaurant in the simulation.
+In the first situation the maximum capcaity is set to 5, then to 10
+and the last case has restaurants with maximum 15 tables available
+each. For every situation we made 5 simulations in order to have some
+data on which making some statistical considerations on the emerging
+behaviours. Since this, once we made the 5 simulations for each case
+we mediated the results in order to have a mean tren to analyze.
+
+In light of this, we start considering one person at once. We analyze
+the percentage of time that the same person goes to different restaurants
+during the entire simulation. Thus, we create an histogram were each
+bar represents a restaurant (ordered on the rank from the lowest to
+the highest one), while on the vertical axis we have the number of
+time someone goes to the corresponding restaurant.
+
+Since all people are similar and we have no reason to prefere an agent
+(person) instead of one other, we decide to mediate above all ....\textbf{number
+???..}.. people taking part of the simulation. The result of this
+analysis is shown in picture number \textbf{???.}
+
+We start by looking at results for the case with maximum evaluation
+up to five. As we could have foreseen, since the capacity is low,
+many people will often receive a refuse message, especially when everyone
+has discovered which one is the real best restuarant and managed (when
+the adopted strategy is ``chose the best'') to go there. This is
+the reason why people should reconcile themselves in not going to
+the restaurant they prefere and be pleased to go to a lower ranked
+one. 
+
+Besides, we observe that higher is the restaurant quality, higher
+will be the number of visits it receives; we remark that in picture
+number \textbf{??? }where worst ranked restaurants have a low level
+of frequentation, while the afflux increases towards the maximum level,
+reached for the best ranked restaurant, according to the restaurant
+quality.
+
+GRAFICO ISTOGRAMMA 1
+
+Moreover, someone could notice that the restaurant which rank is 4.06
+received an higher number of visits comparing to the 4.69 restaurant.
+As we will see better in later sections, the reason of this phenomena
+could be related to two main factors: first of all if we consider
+a first transient period, where people do not know the real quality
+of each restaurant, they would easily go to the bad restaurant since
+they are convinced they are the best one. The second motivation is
+linked to the choose strategy that everyone adopts on each turn; as
+a matter of fact, when the 50\% of probability lead people to opt
+for ``random choose'' there is no reason to go for the best restaurant.
+This is the reason why even lower restaurants receives a minimum number
+of visits (three in this case) during the simulation.
+
+Looking at next simulation, maximum capacity up to 10, we notice that
+the behaviours observed before come out again.
+
+GRAFICO ISTOGRAMMA 2
+
+Furthermore, we point out that, since the higher capacity of restaurants,
+people will be refused rather than before and the trend in going to
+the best restaurant, on the all lenght of the simulation, will be
+more evident.
+
+Lastly if we look and the third simulation, when capacity is up to
+15 what we said before is just confirmed
+
+GRAFICO ISTOGRAMMA 3
+
+Nevertheless, there is one more unpredictable thing to outline. Looking
+at the 3 graphs(?) we showed before, we notice that if the restaurant
+rank is lower than, approximately, 2.9 it does not matter how lower
+it is, that the trend will be about the same. In fact, the first 5
+restaurants, for each simulation, usually always have the same number
+of visits within the error. This is much more evident when we augment
+the maximum capacity of the diner where the main factor responsible
+of visiting bad restaurants is related to the probability of the choosing
+strategy. This teach us that no matter how bad a restaurant is, it
+would rather be completely void.
+
+As for clarification, the factors that lead people to go randomly,
+in real life, are sundry: for example I could think that restaurant
+1 is really bad, and even if that is the truth I'm with other people
+that are convinced of the contrary. Thus, if I do not want to break
+up the friendship I will be obliged to resign myself and going to
+a bad restaurant, following the rest of the company, even if I'm not
+pleased of that. This is not a completely random choose in real life,
+but could be modeled as it was in our MAS simulation.
+
+
+\part{Percentage Afflux Analysis}
+
+In this second part of the analysis we will use the same simulations
+as before facing the problem from a different point of view. While
+before we considered separately where a person went on each turn,
+and then meadiating on all people we saw how the afflux to diners
+changed through the simulation, now our aim is to shift our attention
+directly on restaurants. In this sense, we now focus on estimating
+what is the percentage of people afflux and how it evolves turn by
+turn. As sais before we took in consideration 5 simulation for each
+one of three different cases with maximum capacity set to 5, 10 and
+15.
+
+Focusing on the first situation we immediately observe that since
+the capacity is low, people should even frequent bad diner. Nevertheless,
+as we could expect, both the two top-ranked restaurants are always
+full after turn 5. As a matter of fact, we outpointed before the importance
+of the first 5 turns as a sort of transient period where people should
+discover the environment updating their knowledge database.
+
+GRAFICO TEMPO 1 + DI NUOVO ISTOGRAMMA 1 (3.1)
+
+Moreover, if we look at both the graphs in picture \textbf{3.1???
+}and we focus on the initial time steps we are now able to better
+explain what we observed in the previous section. In fact, before
+we noticed that the second best ranked restaurant received, on average,
+more visits compared to the best one. In the first transient most
+of the people are initially convinced that the second restaurant is,
+on the contrary, the best one and at the beginning they all manage
+to go there. Since the capacity is so low, this has an huge effect
+on the mean afflux when we mediate on all people and the result is
+showed in the istogram of picture \textbf{3.1???.}
+
+As for the second simulation things are more or less the same. Since
+the capacity is higher the effect of the first transient is toned
+down and from the fifth turn all people manage to go to the best-ranked
+restaurant. As said before, the capacity is limited so many people
+will be rejected and will opt for another restaurant; furthermore,
+we see again some statistical fluctuations dued both to the limited
+capacity and to the possibility of going at random the 50\% of turns.
+
+GRAFICO TEMPO 2 + DI NUOVO ISTOGRAMMA 2 (3.2)
+
+In the third simulation with the capacity up to 15 we remark the same
+trend as before\footnote{See picture 3.3}. Besides, there are two
+important things to underline. 
+
+First of all, we notice that the transient effect is much more attenuated
+and, as said before, we suppose that the visits to bad restaurants
+are mostly related to the strategy adopted from the agent in choosing
+the diner.
+
+Secondly, the best ranked restaurant most of the time is never fullfilled;
+this could seem to be counterintuitive. Again, we could imagine that
+the reason is that the capacity of the best restaurant is high enough
+to host all people that decided to adopt the ``best choose (METTERE
+NOME GIUSTO DELLA STRATEGIA)'' strategy while other people, who went
+randomly, will book somewhere else. 
+
+GRAFICO TEMPO 3 + DI NUOVO ISTOGRAMMA 3 (3.3)
+
+
+\subsubsection*{Paragrafetto da aggiungere all'inizio della parte di analisi di Fra}
+
+As for the analysis, once we generated and stored the .csv files,
+with the result of the communications, through the log of our program
+in Jade, we process them using an iPython notebook. Thus, we developped
+some tools, one specifical for each type of analysis, where we red
+and organised the .csv files with the \emph{Pandas} library. Then,
+we used the \emph{Numpy} library in making some mathematical work,
+computing standard deviations, fitting curves and so on. Lastly, we
+showed our result plotting what we obtained thorugh the \emph{Matplotlib}
+library and even used it to export them as a .png files.
+
+
+\part{Further Considerations on Strategy's Selection}
+
+In previous sections we interpeted part of our results saying that
+some unpredictable phenomena were related to the fact that people
+could adopt two different stategies in the ``choose'' phase of the
+communication: one that lead them to go random and the another one,
+more rational, that take them to the best restaurant. 
+
+In order to better understand the weight that this random component
+takes in our analysis, we try to remake the same simulations as before
+by giving the 100\% of probability to the ``choose the best'' strategy.
+In this sense, we deserve to not have statistical fluctuations and
+to observe a more deterministic and rational collective behaviour.
+
+The results are shown in the following paragraphs.
+
+As for the first simulation we immediately notice that the histogram
+which shows the average afflux is quite different than before. For
+the first 2 restaurant we have a really low contribute dued to the
+first transient. Since the capacity is low, the other restaurant will
+be often frequent by cutomers. Naturally, people will be more pleased
+to go in better diner so the average afflux increase with the rank
+of the location. Besides, looking at the second graph we have the
+confirmation that the trend is more deterministic. We do not have
+statistical fluctuations since people always manage to opt for the
+top-ranked diner which are progressively fullfilled. Thus, it is evident
+that the best restaurant is immediately filled while the one which
+rank is 1.56 needs about 23 turns to be always fully booked: people
+realize that it is the \emph{``less worse''} place with still available
+places.
+
+ISTOGRAMMA + GRAFICO (NO RANDOM CAPIENZA 5)
+
+In the second case we have an higher capacity for each diner so only
+the first 3 restaurant will be filled. As a matter of fact, since
+we have \textbf{???} people in the simulation, the place available
+in three restaurants will be high enough to host all of them. The
+frequentation of bad diner progressively decrease while people discover
+there is something better in town. Moreover, looking at the histogram
+we have the confirmation that the only contribute to worst six restaurants
+is dued to the beginning ignorance of people whom knowledge database
+is initialized randomly. Again, the beginning transient plays an important
+role and outlines the ``intelligence'' of agents which trend is
+to explore the external environment adjourning their thought.
+
+ISTOGRAMMA + GRAFICO (NO RANDOM CAPIENZA 10)
+
+In the third, and last, simulation things are similar again. The difference
+here is that 2 restaurants with capacity up to 15 are more or less
+enough to satisfy people's demand.
+
+Moreover, it is interesting to underline that the process of discovering
+th entire environment here is much more slow. As a matter of fact,
+we can notice that after 30 turns there are people who still belive
+the third-ranked restaurant is better than the second one since someone
+still manages to go to the diner which rank is 3.44 even there's still
+place available in a better restaurant. We could imagine that with
+a number of turn high enough, less people will go to worse restaurant
+and even the second-ranked diner will be filled as in the situations
+previously showed. 
+
+ISTOGRAMMA + GRAFICO (NO RANDOM CAPIENZA 15)
+
+
+\part{Conclusions}
+
+
+\part*{DA FARE:}
+
+- SISTEMARE PARTE ANALISI INIZIALE
+
+- AGGIUNGERE SPIEGAZIONE SU COME ABBIAMO FATTO I GRAFICI (vedi paragrafetto
+sottostante)
+
+- AGGIUNGERE DA QUALCHE PARTE FORMULE SU COME SI AGGIORNA LA VALUTAZIONE
+NEL KNOWLEDE DATABASE IN EVALUATE
+
+
+\section*{Commenti da fare ai comportamenti osservati}
+\begin{itemize}
+\item Osservo che ovviamente maggiore è la capienza dei vari ristoranti
+e maggiore sarà la tendenza delle persone ad andare nel ristorante
+migliore una volta che avranno esplorato la maggior parte del mondo
+\item Commentare transiente iniziale in cui l'agente va alla scoperta del
+mondo, molti tendono ad andare nei primi 5 turni (circa) anche nei
+ristoranti scarsi ma perchè nel loro knowledge databse sono convinti
+essere i migliori essendo l'inizializzazione del pensiero degli agenti
+person casuale.
+\item Osserviamo che ci sono diverse fluttuazioni statistiche molto evidenti
+specialmente nell'ultimo grafico con capienza 15. Qui pur essendoci
+posto alcune volte capita che il ristorante migliore non si riempia
+e gente vada in ristoranti meno buoni. Il tutto è dovuto al fatt che
+50\% delle volte vanno a caso e 50\% delle volte scelgono il migliore.
+Passo successivo: fare confronto con stessa simulaazione in cui il
+100\% delle volte vanno nel migliore.
+\item Osservo che in tutte le situazioni c'è poca differenza tra i ristoranti
+scarsi. Nel senso che se la valutazione del ristorante è inferiore
+a 2.5 circa esso si ocmporterà circa allo stesso modo di quelli a
+votazione più bassa. Per la precisione che il rank sia 0.3 o 2.1 l'affluenza
+delle persone sarà circa la stessa in tutte le simulazioni (ovviamente
+in proporzione alla capienza). Fenomeno tanto più evidente nel caso
+di capienza 15. Nel caso a capienza 5 ovviamente si faranno sentire
+maggiormente le fluttuazioni statistiche dovute al 50\% random e pertanto
+l'istogramma sembra seguire circa una distribuzione omogenea. Mediando
+su tutte le persone quindi quelli che opteranno per i ristoranti più
+scarsi saranno quelli che non trovano posto altrove e quelli che vanno
+a caso.
+\end{itemize}
+
+\subsection*{Le fluttuazioni statistiche osservate negli istogrammi sono principalmente
+dovute a:}
+\begin{enumerate}
+\item Transiente iniziale in cui ristoranti peggiori sono più popolati di
+quelli migliori (si vede bene nel caso a capienza 5)
+\item Effeto della scelta casuale che si alterna a parità di probabilità
+con la strategia del best choose
+\end{enumerate}
+
+\section*{Idee da inserire in ``Implementazioni future''}
+\begin{enumerate}
+\item Inserire vari parametri su cui basare la scelta del ristorante. Oltre
+alla qualità complessiva inserire altri gradi di liberta come ad esempio:\end{enumerate}
+\begin{itemize}
+\item Tipo di cucina (giapponese, italiana, pizza...)
+\item Pulizia
+\item Esigenze alimentari (vegani, vegetariani, fruttariani, respiriani
+:D...)
+\item Posizione (vicino al centro, o nel raggio di qualche km dalla posizione
+-> ricerca geolocalizzata)\end{itemize}
+\begin{enumerate}
+\item Inserire come variabile il Prezzo, introducendolo come grado di libertà
+e come parametro su cui basare eventuali nuove strategia di scelta.
+\item Integrare una nuova scelta ``Weighted Random Choose'' in cui la
+scelta casuale del ristorante utilizzata nella nostra simulazione
+è un ibrido con la scelta del ristorante migliore. Cioè vado a caso
+sempre pesando la casualità con i miei parametri di minimum evaluation
+(e.g. vado a caso ma non troppo)
+\item Estendere questo tipo di modello di comunicazione anche ad altri domini
+quali il booking di alberghi, la ricerca di negozi specializzati (ad
+esempio abbigliamento) permettendo di fornire un servizio a 360\textdegree{}
+su tutto ciò che ci viene in mente (da scrivere per bene)
+\item Altre idee....\end{enumerate}
+
+\end{document}

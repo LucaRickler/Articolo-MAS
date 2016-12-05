@@ -1,0 +1,83 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+
+\newcommand{\fpath}{./Figs/}
+
+\begin{document}
+
+\section{Implementation}
+\label{sec:implementation}
+We wrote the model in Java, using the JADE\footnote{\textbf{link to site}} library, developed by Tilab \textbf{(check)}. We chose it because it offers a range of agent and behaviour types as well as a built-in support for communication between agents.
+
+For the generation of random numbers, we used the uniform distribution RNG built in the Java standard library.
+
+We also implemented the option to load the simulation set-up, including all randomly generate quantities, from a JSON file generated during another simulation.
+\subsection{Classes overview}
+The model is mainly composed of two type of classes: agents and behaviours. 
+
+\textbf{TO DO}
+
+\subsection{Communication protocols}
+The main communication protocol we designed is the one responsible for the communications between people and restaurants, which is shown in figure \ref{fig:comm_protocol}. The communication is started by a person agent, which sends a \textit{Request} to the restaurant. If the restaurant is already full, it will answer with a \textit{Refuse}, ending the communication. Otherwise it will answer with a \textit{Propose}. Normally, the same person sends many requests at once to different restaurants. After receiving all the answer, it chooses the best restaurant with one of the strategies previously described. She then sends an \textit{Accept Proposal} to this restaurant. At this point, this checks again how much space left it has. If there's none, it will send a \textit{Failure} and the communication will end. This may happen in case of slow communications and concurrent actions by many people. If instead it still has some space left, it will send the person an \textit{Inform} containing it's quality and set the seat as occupied. This ends the communication. 
+\begin{figure}
+\includegraphics[width=6cm]{\fpath/CommunicationPR_mk2.png}
+\caption{Diagram of the communication protocol between people and restaurants}
+\label{fig:comm_protocol}
+\end{figure}
+
+\subsection{Global}
+\label{subsec:global}
+To control the turn structure and initialize the model, we implemented a third type of agent called global. 
+
+Figure \ref{fig:global_flow_big} shows the internal logic of the global agent. This can be divided in three phases (blue boxes) and some other actions. At first, the global agent initializes all the other agents and collects their data in JSON format. At the end of this first phase, it saves the JSON configuration files. Then, it signals the restaurants to reset and waits for their answer. At last, it signals the start of the turn to the people. At the end of the turn, each person sends its data to the global agent. This turn sequence is repeated for a fixed number of times, chosen at the start of the simulation.
+At the end of the last turn, the global agent saves on disk the log files containing all the data of the simulation.
+
+\begin{figure}
+\includegraphics[width=4cm]{\fpath/Global_General.png}
+\caption{Diagram of the internal logic of the Global class}
+\label{fig:global_flow_big}
+\end{figure}
+
+The internal structure of a single phase is shown in figure \ref{fig:global_flow_small}. All of them start with \textit{Confirm} performative broadcast to all the agents which signals the beginning of the phase. The different phases are differentiated based on the message ontology. Then the Global agent listens for incoming messages with the result of the computation for that phase till it has received an answer from all the interested agents. 
+\begin{figure}
+\includegraphics[width=3cm]{\fpath/Global_specific.png}
+\caption{Diagram of the internal logic of a phase of the Global class logic}
+\label{fig:global_flow_small}
+\end{figure}
+
+\subsection{Restaurant}
+The restaurant agents work as an automatic answerer: their only task is to answer to incoming questions asked by the other agents. Their two parameters, capacity and quality, are randomly generated in a specified range on initialization.
+
+As figure \ref{fig:restaurant_flow} shows, the internal logic of the restaurant agents is rather simple: they listen to incoming messages and answer based on the message performative. If the message performative is \textit{Request}, the restaurant checks for free space and answers with a \textit{Propose} if there is any or a \textit{Refuse} if there is none. This is the first phase of the person-restaurant communication protocol.
+
+On an \textit{Accept Proposal}, it will again check for free space and answer with an \textit{Inform} containing its quality if there is still unoccupied space or a \textit{Failure} if there is none. This is the second phase of the person-restaurant communication protocol. 
+
+At last, if the message performative is \textit{Confirm}, it will answer with a propagate only if the message ontology is "reset", which corresponds to the restaurant reset phase in the turn structure.
+\begin{figure}
+\includegraphics[width=10cm]{\fpath/Restaurant.png}
+\caption{Diagram of the internal logic of the Restaurant class}
+\label{fig:restaurant_flow}
+\end{figure}
+
+\subsection{Person}
+Unlike the restaurant agents, the person agents play a more active role in the simulation: as it's been said earlier, they have the ability to take decisions and have a personal opinion regarding the external world in the form of a knowledge database.
+
+The three properties of each person agent, \textit{boldness}, \textit{maximum evaluation} and its \textit{list of friends} are randomly generate on initialization. Their range is set at the start of the simulation.
+
+Figure \ref{fig:person_flow} shows the internal logic of a person agent. After the global initialization phase described in section \ref{subsec:global} the agent waits for the turn start broadcast. Afterwards it starts the \textit{search} routine: it sends a \textit{Request} message to every restaurant which it thinks to be better than its \textit{maximum evaluation} parameter. Then it collects all the answers, selecting only the positive ones, containing a \textit{Propose}, and starts the \textit{choose} routine. At this point, it selects randomly one of the three strategies described in section \ref{subsec:strategies}. The probabilities with which it will select one of them is set at the start of the simulation. Using one of these strategies, it selects the best restaurant and sends it a \textit{Accept proposal} with its \textit{eat} routine. If somehow in the meantime the restaurant has received enough bookings to fill all the available tables, it responds with a \textit{Failure} and the person will start again the whole process excluding the previously chosen restaurant from its search list. Otherwise, the restaurant sends it an \textit{Inform} containing its effective quality. The person then compares this with the restaurant record in its knowledge database and update the latter with the \textit{evaluate} routine. The update rule is better described in section \ref{sec:math_fra_TBD}. At last, the person sends its new evaluation to its friends, who will use it to update their thrust map with a similar rule when they'll eat in the same restaurant, and notifies the global agent the end of its turn.
+\begin{figure}
+\includegraphics[width=4cm]{\fpath/Person_General.png}
+\caption{Diagram of the internal logic of the Person class}
+\label{fig:person_flow}
+\end{figure}
+
+\subsection{File output}
+The output data is recorded at the end of the simulation in cvs tables. 
+
+\textbf{TO DO}
+\end{document}
